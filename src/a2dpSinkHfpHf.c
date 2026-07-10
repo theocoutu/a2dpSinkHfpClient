@@ -935,3 +935,34 @@ esp_err_t a2dpSinkHfpHf_set_a2dp_volume(uint8_t volume)
     
     return ESP_OK;
 }
+
+/**
+ * @brief Update speaker or microphone volume
+ * @param target 0 for speaker, 1 for microphone
+ * @param volume Volume level (0-15)
+ */
+esp_err_t a2dpSinkHfpHf_volume_update(uint8_t target, int volume)
+{
+    //if (target < 0 && target > 1)
+    if (target != 0 && target != 1)
+    {
+        ESP_LOGW(A2DP_SINK_HFP_HF_TAG, "target must be 0 or 1 but got %d", target);
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    esp_err_t ret = ESP_FAIL;
+    if (target == 0)
+    {
+        ret = a2dpSinkHfpHf_set_hfp_speaker_volume((uint8_t)volume);
+    }
+    else if (target == 1)
+    {
+        ret = a2dpSinkHfpHf_set_hfp_mic_volume((uint8_t)volume);
+    }
+
+    if (ret != ESP_OK && ret != ESP_ERR_INVALID_STATE)
+    {
+        ESP_LOGW(A2DP_SINK_HFP_HF_TAG, "Volume update failed with error: %s (0x%X)", esp_err_to_name(ret), ret);
+    }
+    return ret;
+}

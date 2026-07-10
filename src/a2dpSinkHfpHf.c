@@ -943,7 +943,7 @@ esp_err_t a2dpSinkHfpHf_set_a2dp_volume(uint8_t volume)
  */
 esp_err_t a2dpSinkHfpHf_volume_update(uint8_t target, int volume)
 {
-    //if (target < 0 && target > 1)
+    //if (target < 0 || target > 1)
     if (target != 0 && target != 1)
     {
         ESP_LOGW(A2DP_SINK_HFP_HF_TAG, "target must be 0 or 1 but got %d", target);

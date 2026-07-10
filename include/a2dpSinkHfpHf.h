@@ -228,10 +228,10 @@ esp_err_t a2dpSinkHfpHf_stop_voice_recognition(void);
 
 /**
  * @brief Update speaker or microphone volume
- * @param target "spk" for speaker, "mic" for microphone
+ * @param target 0 for speaker, 1 for microphone
  * @param volume Volume level (0-15)
  */
-esp_err_t a2dpSinkHfpHf_volume_update(const char *target, int volume);
+esp_err_t a2dpSinkHfpHf_volume_update(uint8_t target, int volume);
 
 esp_err_t a2dpSinkHfpHf_query_operator(void);
 esp_err_t a2dpSinkHfpHf_query_current_calls(void);

@@ -160,7 +160,7 @@ HFP_CMD_HANDLER(volume) {
     }
 
     uint8_t target;
-    if (sscanf(argv[1], "%d", &target) != 1 || target < 0 || target > 1) {
+    if (sscanf(argv[1], "%hhu", &target) != 1 || !(target == 0 || target == 1) ) {
         printf("Invalid target (must be 0 or 1): %s\n", argv[2]);
         return 1;
     }
@@ -171,7 +171,7 @@ HFP_CMD_HANDLER(volume) {
         return 1;
     }
 
-    printf("Volume %s = %d\n", target, volume);
+    printf("Volume %hhu = %d\n", target, volume);
     if (target == 0)
     {
         a2dpSinkHfpHf_set_hfp_speaker_volume(volume);

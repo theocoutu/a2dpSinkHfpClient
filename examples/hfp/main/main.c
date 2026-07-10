@@ -161,7 +161,7 @@ HFP_CMD_HANDLER(volume) {
 
     uint8_t target;
     if (sscanf(argv[1], "%hhu", &target) != 1 || !(target == 0 || target == 1) ) {
-        printf("Invalid target (must be 0 or 1): %s\n", argv[2]);
+        printf("Invalid target (must be 0 or 1): %s\n", argv[1]);
         return 1;
     }
     

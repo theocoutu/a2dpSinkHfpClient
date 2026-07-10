@@ -44,7 +44,7 @@ static uint8_t g_hfp_mic_volume_before_mute = 0;
  */
 static esp_err_t apply_hfp_speaker_volume(uint8_t volume)
 {
-    esp_err_t ret = a2dpSinkHfpHf_volume_update("spk", volume);
+    esp_err_t ret = a2dpSinkHfpHf_volume_update(0, volume);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to set HFP speaker volume: %s", esp_err_to_name(ret));
         return ret;
@@ -66,7 +66,7 @@ static esp_err_t apply_hfp_speaker_volume(uint8_t volume)
  */
 static esp_err_t apply_hfp_mic_volume(uint8_t volume)
 {
-    esp_err_t ret = a2dpSinkHfpHf_volume_update("mic", volume);
+    esp_err_t ret = a2dpSinkHfpHf_volume_update(1, volume);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to set HFP mic volume: %s", esp_err_to_name(ret));
         return ret;

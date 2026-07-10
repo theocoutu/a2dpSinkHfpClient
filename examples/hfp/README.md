@@ -99,6 +99,9 @@ a2dpSinkHfpHf_start_voice_recognition();
 
 // Set speaker volume (0-15)
 a2dpSinkHfpHf_volume_update(0, 14);
+
+// Set microphone volume (0-15)
+a2dpSinkHfpHf_volume_update(1, 14);
 ```
 
 ### Music Control Example

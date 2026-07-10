@@ -329,8 +329,8 @@ void register_hfp_commands(void) {
 
     const esp_console_cmd_t volume_cmd = {
         .command = "vol",
-        .help = "Volume control, e.g. vol spk 10",
-        .hint = "<spk|mic> <0-15>",
+        .help = "Volume control, e.g. vol 1 10",
+        .hint = "<0=spk|1=mic> <0-15>",
         .func = &hfp_volume_handler,
     };
     ESP_ERROR_CHECK(esp_console_cmd_register(&volume_cmd));

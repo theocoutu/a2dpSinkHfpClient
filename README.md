@@ -98,7 +98,10 @@ a2dpSinkHfpHf_dial_number("5551234567");
 a2dpSinkHfpHf_start_voice_recognition();
 
 // Set speaker volume (0-15)
-a2dpSinkHfpHf_volume_update("spk", 12);
+a2dpSinkHfpHf_volume_update(0, 14);
+
+// Set microphone volume (0-15)
+a2dpSinkHfpHf_volume_update(1, 14);
 ```
 
 ### Music Control Example
@@ -163,8 +166,8 @@ esp_err_t a2dpSinkHfpHf_stop_voice_recognition(void);
 
 ### Volume Control
 ```c
-esp_err_t a2dpSinkHfpHf_volume_update(const char *target, int volume);
-// target: "spk" or "mic", volume: 0-15
+esp_err_t a2dpSinkHfpHf_volume_update(uint8_t target, int volume);
+// target: 0 for speaker or 1 for mic, volume: 0-15
 ```
 
 ### Phone Queries

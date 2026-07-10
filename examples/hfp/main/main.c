@@ -155,11 +155,16 @@ HFP_CMD_HANDLER(vr_stop) {
 // Volume update
 HFP_CMD_HANDLER(volume) {
     if (argn != 3) {
-        printf("Usage: vol <spk|mic> <0-15>\n");
+        printf("Usage: vol <0=spk|1=mic> <0-15>\n");
         return 1;
     }
 
-    const char *target = argv[1];
+    uint8_t target;
+    if (sscanf(argv[1], "%d", &target) != 1 || target < 0 || target > 1) {
+        printf("Invalid target (must be 0 or 1): %s\n", argv[2]);
+        return 1;
+    }
+    
     int volume;
     if (sscanf(argv[2], "%d", &volume) != 1 || volume < 0 || volume > 15) {
         printf("Invalid volume: %s\n", argv[2]);
@@ -167,9 +172,12 @@ HFP_CMD_HANDLER(volume) {
     }
 
     printf("Volume %s = %d\n", target, volume);
-    if(strncmp("spk", target, 3) == 0){
+    if (target == 0)
+    {
         a2dpSinkHfpHf_set_hfp_speaker_volume(volume);
-    } else if (strncmp("mic", target, 3) == 0){
+    }
+    else if (target == 1)
+    {
         a2dpSinkHfpHf_set_hfp_mic_volume(volume);
     }
     return 0;
